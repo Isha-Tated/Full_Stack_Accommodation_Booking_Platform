@@ -1,0 +1,28 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container mt-5">
+  <!-- Navigation (optional if your boilerplate has it) -->
+  <div class="text-center mb-4">
+    <h1>WanderWorld</h1>
+    <p class="lead">Oops! Something went wrong.</p>
+  </div>
+
+  <!-- Error alert -->
+  <div class="row">
+    <div
+      class="alert alert-danger col-md-6 offset-md-3 text-center"
+      role="alert"
+    >
+      <h4 class="alert-heading">Error!</h4>
+      <p><%= message %></p>
+      <hr />
+      <a href="/" class="btn btn-primary">Go Back Home</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-center mt-5">
+    <p>© WanderWorld Private Limited</p>
+    <a href="#">Privacy</a> | <a href="#">Terms</a>
+  </footer>
+</div>
