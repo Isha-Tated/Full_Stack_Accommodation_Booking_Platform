@@ -123,11 +123,9 @@ mongoose
     console.log("DB connection error:", err);
   });
 // ---------------- SESSION STORE ----------------
+// ---------------- SESSION STORE ----------------
 const store = MongoStore.create({
   mongoUrl: dbUrl,
-  crypto: {
-    secret: process.env.SECRET,
-  },
   touchAfter: 24 * 3600,
 });
 
@@ -143,13 +141,10 @@ const sessionOptions = {
   saveUninitialized: false,
   cookie: {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
+    secure: false, // Change this to false for now to test
     maxAge: 1000 * 60 * 60 * 24 * 7,
   },
 };
-
-app.use(session(sessionOptions));
-app.use(flash());
 
 // ---------------- PASSPORT ----------------
 app.use(passport.initialize());
