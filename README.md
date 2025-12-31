@@ -10,7 +10,6 @@ A feature-rich accommodation booking platform built with Node.js, Express, Mongo
 
 ### User Features
 - **User Authentication** - Secure signup, login, and logout functionality using Passport.js
-- **Browse Listings** - Explore a variety of accommodation options
 - **Create Listings** - Authenticated users can add new properties
 - **Edit & Delete** - Property owners can manage their listings
 - **Reviews** - Users can leave ratings and reviews for properties
