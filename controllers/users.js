@@ -12,6 +12,7 @@ module.exports.signup = async (req, res, next) => {
   req.login(registeredUser, (err) => {
     if (err) return next(err);
     req.flash("success", "Welcome to Wanderworld!");
+    res.redirect("/listings"); // ✅ ADD THIS LINE
   });
 };
 

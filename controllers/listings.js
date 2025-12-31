@@ -48,7 +48,6 @@ module.exports.createListing = async (req, res, next) => {
   let savedListing = await newListing.save();
   console.log(savedListing);
 
-  await newListing.save();
   req.flash("success", "new listing created!");
   res.redirect("/listings");
 };
@@ -58,7 +57,7 @@ module.exports.renderEditForm = async (req, res) => {
   const listing = await Listing.findById(id);
   if (!listing) {
     req.flash("error", "Listing you requested for does not exist!");
-    res.redirect("/listings");
+    return res.redirect("/listings");
   }
 
   let originalImageUrl = listing.image.url;
