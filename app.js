@@ -113,7 +113,7 @@ const dbUrl = process.env.ATLASDB_URL;
 const PORT = process.env.PORT || 8000;
 
 // ---------------- DB CONNECTION ----------------
-mongoose.set("strictQuery", false); // ← ADD THIS LINE HERE
+mongoose.set("strictQuery", false);
 mongoose
   .connect(dbUrl)
   .then(() => {
@@ -122,7 +122,7 @@ mongoose
   .catch((err) => {
     console.log("DB connection error:", err);
   });
-// ---------------- SESSION STORE ----------------
+
 // ---------------- SESSION STORE ----------------
 const store = MongoStore.create({
   mongoUrl: dbUrl,
@@ -141,10 +141,14 @@ const sessionOptions = {
   saveUninitialized: false,
   cookie: {
     httpOnly: true,
-    secure: false, // Change this to false for now to test
+    secure: false,
     maxAge: 1000 * 60 * 60 * 24 * 7,
   },
 };
+
+// ✅ APPLY SESSION AND FLASH (was missing!)
+app.use(session(sessionOptions));
+app.use(flash());
 
 // ---------------- PASSPORT ----------------
 app.use(passport.initialize());
@@ -162,6 +166,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
 
+// ✅ THIS SETS currUser FOR ALL VIEWS
 app.use((req, res, next) => {
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
