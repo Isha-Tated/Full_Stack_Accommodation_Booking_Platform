@@ -176,6 +176,10 @@ app.use((req, res, next) => {
 });
 
 // ---------------- ROUTES ----------------
+// ✅ ADD THIS ROOT ROUTE AT THE TOP
+router.get("/", (req, res) => {
+  res.redirect("/listings");
+});
 app.use("/listings", listings);
 app.use("/listings/:id/reviews", reviews);
 app.use("/", userRoutes);
