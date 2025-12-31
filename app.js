@@ -113,6 +113,7 @@ const dbUrl = process.env.ATLASDB_URL;
 const PORT = process.env.PORT || 8000;
 
 // ---------------- DB CONNECTION ----------------
+mongoose.set("strictQuery", false); // ← ADD THIS LINE HERE
 mongoose
   .connect(dbUrl)
   .then(() => {
@@ -121,8 +122,6 @@ mongoose
   .catch((err) => {
     console.log("DB connection error:", err);
   });
-
-mongoose.set("strictQuery", false); // ← ADD THIS LINE HERE
 // ---------------- SESSION STORE ----------------
 const store = MongoStore.create({
   mongoUrl: dbUrl,
